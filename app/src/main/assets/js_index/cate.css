@@ -1,0 +1,329 @@
+﻿@charset "UTF-8";
+/**color,zhangsai,2017/3/10,start**/
+/**界面色系,pg为page页面缩写，blue为色系，Main类似的后缀为颜色作用**/
+/**文字色系,txt为text文本缩写，blue为色系，Main类似的后缀为颜色作用**/
+/**标签色系,tg为tag标签缩写，blue为色系，Main类似的后缀为颜色作用**/
+/**color,zhangsai,2017/3/10,end**/
+/**fontsize,zhangsai,2017/3/10,start**/
+/**fontsize,zhangsai,2017/3/10,end**/
+/**screen width,zhangsai,2017/3/10,start**/
+/**screen width,zhangsai,2017/3/10,start**/
+/**scrollable,zhangsai,2017/3/10,start**/
+/**使ios滚动更加平滑**/
+/**scrollable,zhangsai,2017/3/10,end,**/
+/**vendor prefix,zhangsai,2017/3/10,start**/
+/**主要用于各种animation浏览器适配前缀**/
+/**vendor prefix,zhangsai,2017/3/10,end,**/
+/**text-overflow,zhangsai,2017/3/10,start**/
+/**适用于inline-block或block**/
+/**text-overflow,zhangsai,2017/3/10,end**/
+/**line clamp,zhangsai,2017/3/10,start**/
+/**控制文字显示行数**/
+/**line clamp,zhangsai,2017/3/10,end**/
+/**clearfix,zhangsai,2017/3/10,start**/
+/**清楚浮动**/
+/**clearfix,zhangsai,2017/3/10,end**/
+/**triangle,zhangsai,2017/3/10,start**/
+/** Creates a CSS triangle, which can be used for dropdown arrows, popup tails, and more. Use this mixin inside a `&::before` or `&::after` selector, to attach the triangle to an existing element.
+@param {number} $triangle-size - Width of the triangle.
+@param {color} $triangle-color - Color of the triangle.
+@param {keyword} $triangle-direction - Direction the triangle points. Can be `top`, `right`, `bottom`, or `left`.
+**/
+/**triangle,zhangsai,2017/3/10,end**/
+/**triangle,zhangsai,2017/3/10,start**/
+/**animation hardware accelaration**/
+/**triangle,zhangsai,2017/3/10,end**/
+.cmr-ltype {
+  height: 100%;
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 7.33333rem;
+  background: #fcfcfc;
+}
+
+.cmr-ltype .swiper-container:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  z-index: 0;
+  background: #f0f0f0;
+  right: 0;
+  top: 0;
+}
+
+.cmr-ltype .swiper-wrapper, .cmr-ltype .swiper-typeleft {
+  height: 100%;
+  position: relative;
+  padding-top: 0.1rem;
+}
+
+.cmr-ltype .swiper-slide {
+  display: block;
+  color: #464c56;
+  height: 3.93333rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 0 0.8rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.cmr-ltype .swiper-slide span {
+  display: inline-block;
+  width: 4.6rem;
+  height: 100%;
+  overflow: hidden;
+  line-height: 3.93333rem;
+}
+
+.cmr-ltype .swiper-slide.active {
+  color: #467af6;
+}
+
+.cmr-ltype .swiper-slide.active:before {
+  content: "";
+  display: block;
+  height: 1.33333rem;
+  width: 0.2rem;
+  border-radius: 8px;
+  overflow: hidden;
+  float: left;
+  background: #467af6;
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  margin-top: -0.66667rem;
+}
+
+.cmr-ltype .swiper-slide.active:after {
+  content: "";
+  display: block;
+  border-left: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  right: -0.26667rem;
+  top: 50%;
+  margin-top: -0.4rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  background: #fcfcfc;
+  z-index: 55;
+}
+
+.cmr-rtype .cmr-rloading, .cmr-typeselect .cmr-rloading {
+  width: 100%;
+  display: none;
+  text-align: center;
+  z-index: 999;
+  position: fixed;
+  z-index: 99;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.cmr-rtype .cmr-rloading span, .cmr-typeselect .cmr-rloading span {
+  position: absolute;
+  margin-left: -13px;
+  margin-top: -13px;
+  left: 50%;
+  top: 50%;
+}
+
+.cmr-rtype {
+  margin-left: 7.33333rem;
+  min-height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.cmr-rtype .cmr-rlist {
+  min-height: 100%;
+}
+
+.cmr-rtype .cmr-typeitem-a {
+  padding: 1rem 1.06667rem;
+  height: 4.3rem;
+}
+
+.cmr-rtype .cmr-typeitem-a:after {
+  content: "";
+  display: block;
+  border-bottom: 1px solid #f0f0f0;
+  margin: 1rem 0 1rem 0;
+}
+
+.cmr-rtype .cmr-typeitem-a:last-child:after {
+  border-bottom: 0;
+}
+
+.cmr-rtype .cmr-typelink {
+  display: box;
+  display: -webkit-box;
+  height: 100%;
+  color: #464C56;
+}
+
+.cmr-rtype .no-list {
+  padding-top: 100%;
+  text-align: center;
+  width: 100%;
+  color: #666;
+}
+
+.cmr-rtype .type-pic {
+  box-flex: 1;
+  width: 4.13333rem;
+  height: 100%;
+  position: relative;
+  margin-right: 1rem;
+}
+
+.cmr-rtype .type-pic img {
+  box-shadow: 0 0 0.7rem #ccc;
+}
+
+.cmr-rtype .type-pic img:nth-child(1) {
+  width: 3.33333rem;
+  height: 100%;
+  position: relative;
+  z-index: 5;
+}
+
+.cmr-rtype .type-pic img:nth-child(2) {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 4;
+  width: 4.13333rem;
+  height: 3.46667rem;
+}
+
+.cmr-rtype .type-info {
+  box-flex: 1;
+  -webkit-box-flex: 1;
+}
+
+.cmr-rtype .type-info .type-name, .cmr-rtype .type-info .type-num {
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+  line-height: 4.33333rem;
+  height: 4.33333rem;
+  float: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cmr-rtype .type-info .type-num {
+  width: 40%;
+  text-align: right;
+  color: #969FA9;
+}
+
+.cmr-rtype .type-info .type-num i {
+  font-style: italic;
+  padding-right: 0.2em;
+}
+
+/*分类筛选*/
+.cmr-typeselect {
+  overflow: hidden;
+  box-shadow: 0 0 20px #ccc;
+  background: #fff;
+}
+
+.cmr-typeselect .cmr-typeSwiper {
+  overflow: hidden;
+}
+
+.cmr-typeselect .swiper-typeselect {
+  border-bottom: 0.06667rem solid #f0f0f0;
+}
+
+.cmr-typeselect .swiper-typeselect:last-child {
+  border: none;
+}
+
+.cmr-typeselect .type-item {
+  display: inline-block;
+  width: auto;
+  box-sizing: border-box;
+  height: 1.66667rem;
+  line-height: 1.66667rem;
+  color: #464c56;
+  text-decoration: none;
+  padding: 0 0.76667rem;
+  margin: 0.66667rem 0.33333rem 0.6rem 0;
+  border: 1px solid transparent;
+}
+
+.cmr-typeselect .swiper-typeselect .type-item:last-child {
+  margin-right: 0 !important;
+}
+
+.cmr-typeselect .type-item.active {
+  border: 1px solid #3778ff;
+  color: #3778ff;
+  border-radius: 0.83333rem;
+}
+
+.cmr-typeselect .cmr-typeHide {
+  line-height: 2.93333rem;
+  height: 2.93333rem;
+  text-align: center;
+  color: #3778ff;
+  display: none;
+}
+
+.cmr-typeselect .cmr-typeHide .cmr-greater-icon {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  display: inline-block;
+  vertical-align: top;
+}
+
+.cmr-typeselect .cmr-typeHide .cmr-typestitle {
+  display: inline-block;
+  height: 2.93333rem;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 0.33333rem;
+}
+
+.cmr-typeselect.fixed {
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 100;
+}
+
+.cmr-typeResult {
+  padding-top: 1.33333rem;
+}
+
+.cmr-typeResult .cmr-bookbox {
+  margin-bottom: 1.4rem;
+}
+
+.cmr-typeResult .cmr-bookbox .mix-bookname {
+  margin-top: -2%;
+}
+
+.cmr-typeResult .cmr-bookbox .mix-bookinfo {
+  bottom: 0;
+}
+
+.cmr-typeResult .Recharge_kong_box {
+  line-height: 1.66667rem;
+  text-align: center;
+}

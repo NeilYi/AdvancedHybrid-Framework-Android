@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="web_error_page_icon_size">105dp</dimen>
+    <dimen name="web_error_page_text_size">12dip</dimen>
+    <dimen name="web_error_page_btn_width_size">176dip</dimen>
+    <dimen name="web_error_page_btn_height_size">33dip</dimen>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="main_theme_color">#3E8AFF</color>
+    <color name="ptr_material_color">#3778FF</color>
+    <color name="migu_loading_text_color">#aeaeae</color>
+    <color name="web_error_bg_color">#FEFEFE</color>
+    <color name="background_color_oct">#fcfcfc</color>
+</resources>

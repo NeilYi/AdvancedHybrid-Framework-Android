@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="browser_progress_bar_height">3dip</dimen>
+</resources>

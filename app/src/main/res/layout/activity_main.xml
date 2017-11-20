@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.neilyi.advancedhybridframework.MainActivity">
+
+    <android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_slogan"
+            android:layout_margin="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:scaleType="centerInside" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_below="@id/iv_slogan"
+            android:layout_above="@+id/tv_vas_team"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_one"
+                style="@style/SonicButton"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Start WebPage With Ptr" />
+
+            <Button
+                android:id="@+id/btn_two"
+                style="@style/SonicButton"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Start WebPage Without Ptr" />
+
+            <Button
+                android:id="@+id/btn_three"
+                style="@style/SonicButton"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:text="Start WebPage For JSBridge"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_vas_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:layout_margin="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"/>
+    </android.widget.RelativeLayout>
+
+    <!--<android.support.design.widget.FloatingActionButton
+        android:id="@+id/btn_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        app:srcCompat="@android:drawable/ic_dialog_info" />-->
+
+</android.support.constraint.ConstraintLayout>
