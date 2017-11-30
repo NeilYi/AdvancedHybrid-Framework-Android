@@ -69,66 +69,163 @@ jsonData采用URLSAFE的Base64编码，对传输的数据进行编码加密，�
 
 3.Fragment的使用
 
-public class CommonWebFragment extends WebFragment {
-    @Override
-    public void onPageStarted(String url, Bitmap favicon) {
+    public class CommonWebFragment extends WebFragment {
+          @Override
+          public void onPageStarted(String url, Bitmap favicon) {
 
+          }
+
+          @Override
+          public void onPageFinished(String url) {
+
+          }
+
+          @Override
+          public void onPageError(int errorCode, String description, String failingUrl) {
+              showErrorView();
+          }
+
+          @Override
+          public void onExternalPageRequest(String url, boolean isHostNameForbiddon) {
+              showErrorView();
+          }
+
+          @Override
+          protected AdvancedWebView initWebView() {
+              Activity act = getActivity();
+              if (act != null) {
+                  return new CommonWebView(act);
+              }
+              return null;
+          }
+
+          @Override
+          protected void configureWebView(AdvancedWebView webView) {
+              if (null == webView) {
+                  return;
+              }
+
+              webView.addPermittedHostname("");   // 设置禁止的host地址
+              webView.setVerticalScrollBarEnabled(false);
+              setPullRefreshEnable(false, true);  // 是否禁止下拉刷新功能
+          }
+
+          @Override
+          protected boolean overrideUrlLoading(WebView view, String url) {
+              if (url.startsWith("http") || url.startsWith("https")) {
+                  loadUrl(url, false);
+              } else {
+                  Activity activity = getActivity();
+                  if (activity != null && !activity.isFinishing()) {
+                      try {
+                          Uri uri = Uri.parse(url);
+                          Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                          activity.startActivity(intent);
+                      } catch (RuntimeException e) {
+                          e.printStackTrace();
+                      }
+                  }
+              }
+              return true;
+          }
     }
 
-    @Override
-    public void onPageFinished(String url) {
+4.对应回调的Action添加到com.example.neilyi.advancedhybridframework.hybride.Actions类里面
 
+      public enum Actions {
+       notifyResultToast, notifyPopup, notifyAlert, notifyConfirm,
+      }
+      
+5.实现Call类型的Hnadler
+
+    public class CallTypeJSHandler implements HybridHandler {
+
+          private WeakReference<AdvancedWebView> mWebView;
+          private WeakReference<WebBaseActivity> mActivity;
+
+          public CallTypeJSHandler(WebBaseActivity activity) {
+              if (activity != null && activity instanceof WebBaseActivity) {
+                  this.mActivity = new WeakReference<>(activity);
+              }
+          }
+
+          @Override
+          public String getHandlerType() {
+              return HybridConstans.CALL_TYPE_TASK;
+          }
+
+          @Override
+          public AdvancedWebView getWebView() {
+              if(mWebView != null && mWebView.get() != null) {
+                  return mWebView.get();
+              }
+              return null;
+          }
+
+          @Override
+          public boolean handerCallTask(WebBaseActivity activity, String actionStr, JSONObject jsonData, AdvancedWebView webview) {
+              if (TextUtils.isEmpty(actionStr)) {
+                  return false;
+              }
+
+              if (activity != null) {
+                  this.mActivity = new WeakReference<>(activity);
+              }
+
+              if (webview != null) {
+                  this.mWebView = new WeakReference<>(webview);
+              }
+
+              Actions action = null;
+              try {
+                  action = Actions.values()[Actions.valueOf(actionStr).ordinal()];
+              } catch (RuntimeException e) {
+                  e.printStackTrace();
+              }
+
+              if (action != null) {
+                  switch (action) {
+                      case notifyResultToast:
+                          notifyResultToast(jsonData);
+                          break;
+                      default:
+                          ToastUtil.showLong("App没有处理事件的Action, action=" + actionStr);
+                          break;
+                  }
+                  return true;
+              }
+
+              return false;
+          }
+
+          private void notifyResultToast(JSONObject jsonData) {
+              String info = "notifyResultToast!";
+              if (jsonData != null) {
+                  try {
+                      info = jsonData.getString("responseInfo");
+                  } catch (JSONException e) {
+                      e.printStackTrace();
+                  }
+              }
+              ToastUtil.showLong(info);
+          }
+
+          private WebBaseActivity getActivityContext() {
+              if (mActivity != null && mActivity.get() != null) {
+                  return mActivity.get();
+              }
+              return null;
+          }
+
+          @Override
+          public boolean handerFetchTask(WebBaseActivity activity, String actionStr, JSONObject jsonObject, BridgeCallback callback) {
+              return false;
+          }
+
+          @Override
+          public boolean handerUrlTask(WebBaseActivity activity, String string) {
+              return false;
+          }
     }
-
-    @Override
-    public void onPageError(int errorCode, String description, String failingUrl) {
-        showErrorView();
-    }
-
-    @Override
-    public void onExternalPageRequest(String url, boolean isHostNameForbiddon) {
-        showErrorView();
-    }
-
-    @Override
-    protected AdvancedWebView initWebView() {
-        Activity act = getActivity();
-        if (act != null) {
-            return new CommonWebView(act);
-        }
-        return null;
-    }
-
-    @Override
-    protected void configureWebView(AdvancedWebView webView) {
-        if (null == webView) {
-            return;
-        }
-
-        webView.addPermittedHostname("");   // 设置禁止的host地址
-        webView.setVerticalScrollBarEnabled(false);
-        setPullRefreshEnable(false, true);  // 是否禁止下拉刷新功能
-    }
-
-    @Override
-    protected boolean overrideUrlLoading(WebView view, String url) {
-        if (url.startsWith("http") || url.startsWith("https")) {
-            loadUrl(url, false);
-        } else {
-            Activity activity = getActivity();
-            if (activity != null && !activity.isFinishing()) {
-                try {
-                    Uri uri = Uri.parse(url);
-                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                    activity.startActivity(intent);
-                } catch (RuntimeException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return true;
-    }
-}
-
 
 
